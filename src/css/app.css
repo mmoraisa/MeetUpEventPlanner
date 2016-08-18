@@ -1,0 +1,29 @@
+.content{
+	margin:auto;
+	text-align:center;
+	padding-bottom:30px;
+}
+
+.form-center{
+	float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+@media screen and (min-width: 900px) {
+	.form-center{
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.form-center{
+		width: 90%;
+	}
+}
+
+.form-group{
+	text-align: left;
+}
