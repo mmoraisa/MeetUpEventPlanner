@@ -1,3 +1,5 @@
+var api_key = 'YOUR_API_KEY';
+
 $(document).ready(function(){
 
 	if(navigator.geolocation && window.location.pathname.indexOf('event.html') != -1){
@@ -113,8 +115,6 @@ function refreshProgress(){
 
 function findLocation(pos){
 	var crd = pos.coords;
-
-	var api_key = 'YOUR_API';
 
 	$.get({
 		url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + crd.latitude + ',' + crd.longitude + '&key=' + api_key,
