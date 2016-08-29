@@ -49,5 +49,8 @@ html
 						input#inputGuestList.form-control(type="text",name="guestlist",placeholder="James, Luana, Carlos, etc..",required)
 					.form-group
 						label(for="inputLocation") Location
-						input#inputLocation.form-control(type="text",name="location",placeholder="New York..",required)
+						input#inputLocation.form-control(type="text",maxlength="3",name="location",placeholder="New York..",required)
+					.form-group
+						label(for="inputAdditionalInfo") Additional Information
+						input#inputAdditionalInfo.form-control(type="text",name="additionalinfo",placeholder="An optional message to the guests ...")
 					input.form-control.btn-primary(type="submit",value="Create")

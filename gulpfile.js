@@ -4,6 +4,7 @@ var clean = require('gulp-clean');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
+var minify = require('gulp-minify');
 
 gulp.task('clean-temp', function () {
     return gulp.src('./temp', {read: false,force: true})
@@ -34,6 +35,12 @@ gulp.task('concat-minify-css',['clean-dist','less'], function() {
     .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('default',['clean-temp','clean-dist','jade','less','concat-minify-css'],function(){
+gulp.task('compressJS',['clean-dist'], function() {
+  gulp.src('./src/js/*.js')
+    .pipe(minify())
+    .pipe(gulp.dest('./dist/js'));
+});
+
+gulp.task('default',['clean-temp','clean-dist','jade','less','concat-minify-css','compressJS'],function(){
 	gulp.start('clean-temp');
 });
