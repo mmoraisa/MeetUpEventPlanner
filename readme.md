@@ -2,10 +2,10 @@
 
 There is a repository to store my Meet-Up Event Planner Web Application for my nanodegree studies. This application is very simple, but I used some technologies on this.
 
-  - [Jade] (node template engine)
-  - [Gulp] (streaming build system)
-  - [LESS] (dynamic style sheet language)
-  - [Bootstrap] (UI boilerplate)
+  - Jade (node template engine)
+  - Gulp (streaming build system)
+  - LESS (dynamic style sheet language)
+  - Bootstrap (UI boilerplate)
 
 ### How to run
 
@@ -29,10 +29,3 @@ Run gulp streaming build system...
 $ gulp
 ```
 It will create the /dist folder that contains the web application files. You can run some webapp servers and open the event.html or account.html files.
-
-   [LESS]: <http://lesscss.org>
-   [Jade]: <http://jade-lang.com>
-   [node.js]: <http://nodejs.org>
-   [Gulp]: <http://gulpjs.com>
-   [Bootstrap]: <http://getbootstrap.com>
-
