@@ -62,4 +62,23 @@ $(document).ready(function(){
 
 		return false;
 	});
+
+	var saved_events = JSON.parse(localStorage.getItem('events'));
+
+	for(var i = 0; i < saved_events.length; i++){
+
+		var event =   '<div class="col-xs-12 col-md-3" style="margin-bottom:20px;">'
+					+ '	<div class="col-xs-12" style="background-color:#ddd;height:300px;">'
+					+ '		<h4 style="margin-top:20px;">' + saved_events[i].name + '</h3>'
+					+ '		<hr>'
+					+ '		<p style="text-align:left"><strong>Event Type:</strong> ' + saved_events[i].eventType + '</p>'
+					+ '		<p style="text-align:left"><strong>Host:</strong> ' + saved_events[i].host + '</p>'
+					+ '		<p style="text-align:left"><strong>Start:</strong> ' + saved_events[i].start + '</p>'
+					+ '		<p style="text-align:left"><strong>End:</strong> ' + saved_events[i].end + '</p>'
+					+ '	</div>'
+					+ '</div>'
+		$('#eventsList').append(event);
+
+	}
+
 });

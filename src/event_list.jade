@@ -1,0 +1,27 @@
+doctype html
+html
+	head
+		title Event List - Meet-Up Event Planner
+		
+		script(src="../node_modules/jquery/dist/jquery.min.js")
+		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
+		script(src="js/app.js")
+		
+		link(rel="stylesheet",href="../node_modules/bootstrap/dist/css/bootstrap.min.css")
+		link(rel="stylesheet",href="css/app.min.css")
+		
+		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+	body
+		.jumbotron.text-center.m-b-0
+			h2 Meet-Up Event Planner
+			h4 Event List
+		nav.navbar.navbar-default.m-t-0
+			.container
+				ul.nav.navbar-nav.m-t-0
+					li
+						a(href="account.html") Account Creation
+					li
+						a(href="event.html") Event Creation
+					li.active
+						a(href="event_list.html") Event List
+		.row.content#eventsList
