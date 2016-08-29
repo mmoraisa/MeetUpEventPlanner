@@ -23,6 +23,8 @@ Install the dependencies.
 $ npm install
 ```
 
+To fill location automatic you need to put a valid API_KEY from Google API in the src/js/app.js file.
+
 Run gulp streaming build system...
 
 ```sh
