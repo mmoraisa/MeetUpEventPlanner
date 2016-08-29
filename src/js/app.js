@@ -1,26 +1,14 @@
 $(document).ready(function(){
 
+	if(navigator.geolocation && window.location.pathname.indexOf('event.html') != -1){
+		navigator.geolocation.getCurrentPosition(findLocation, error, options);
+	}
+
 	var saved_events = getSavedEvents();
 
 	$('input').each(function(){
 		this.onblur = function(){
-			if (this.checkValidity() == false){
-				if($('.input_error[for="' + $(this).prop('id') + '"]').length == 0){
-					$(this).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
-					$(this).parent().find('.notify').remove();
-					$(this).parent().append('<span class="notify glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
-					$(this).parent().after('<div class="input_error" for="' + $(this).prop('id') + '">' + $(this)[0].validationMessage + '</div>');
-				}
-			}
-			else{
-				if($(this).val().length > 0){
-					$(this).parent().addClass('has-feedback').removeClass('has-error').addClass('has-success');
-					$(this).parent().find('.notify').remove();
-					$(this).parent().append('<span class="notify glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
-				}$('.input_error[for="' + $(this).prop('id') + '"]').remove();
-			}
-
-			refreshProgress();
+			refreshInput(this);
 		};
 	});
 
@@ -56,6 +44,26 @@ $(document).ready(function(){
 	}
 
 });
+
+function refreshInput(input){
+	if (input.checkValidity() == false){
+		if($('.input_error[for="' + $(input).prop('id') + '"]').length == 0){
+			$(input).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
+			$(input).parent().find('.notify').remove();
+			$(input).parent().append('<span class="notify glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+			$(input).parent().after('<div class="input_error" for="' + $(input).prop('id') + '">' + $(input)[0].validationMessage + '</div>');
+		}
+	}
+	else{
+		if($(input).val().length > 0){
+			$(input).parent().addClass('has-feedback').removeClass('has-error').addClass('has-success');
+			$(input).parent().find('.notify').remove();
+			$(input).parent().append('<span class="notify glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
+		}$('.input_error[for="' + $(input).prop('id') + '"]').remove();
+	}
+
+	refreshProgress();
+}
 
 function getSavedEvents(){
 	var saved_events = JSON.parse(localStorage.getItem('events'));
@@ -102,3 +110,30 @@ function refreshProgress(){
 	$('[role="progressbar"]').css('width',perc_now);
 	$('[role="progressbar"]').html(perc_now);
 }
+
+function findLocation(pos){
+	var crd = pos.coords;
+
+	var api_key = 'AIzaSyCt6if5rk77ZOAvCksNwcVjZtAIaUlQ9EM';
+
+	$.get({
+		url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + crd.latitude + ',' + crd.longitude + '&key=' + api_key,
+		crossDomain: true,
+		dataType: 'json',
+		success: function(data){
+			var location = data.results[0].name;
+			$('input[name="location"]').val(location);
+			refreshInput($('input[name="location"]')[0]);
+		}
+	});
+}
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+};
