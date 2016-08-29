@@ -114,7 +114,7 @@ function refreshProgress(){
 function findLocation(pos){
 	var crd = pos.coords;
 
-	var api_key = 'AIzaSyCt6if5rk77ZOAvCksNwcVjZtAIaUlQ9EM';
+	var api_key = 'YOUR_API';
 
 	$.get({
 		url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + crd.latitude + ',' + crd.longitude + '&key=' + api_key,
