@@ -5,12 +5,21 @@ $(document).ready(function(){
 		this.onblur = function(){
 			if (this.checkValidity() == false){
 				if($('.input_error[for="' + $(this).prop('id') + '"]').length == 0){
+					$(this).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
+					$(this).parent().find('.notify').remove();
+					$(this).parent().append('<span class="notify glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
 					$(this).parent().after('<div class="input_error" for="' + $(this).prop('id') + '">' + $(this)[0].validationMessage + '</div>');
-					$(this).focus();
 				}
 			}
-			else
-				$('.input_error[for="' + $(this).prop('id') + '"]').remove();
+			else{
+				if($(this).val().length > 0){
+					$(this).parent().addClass('has-feedback').removeClass('has-error').addClass('has-success');
+					$(this).parent().find('.notify').remove();
+					$(this).parent().append('<span class="notify glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
+				}$('.input_error[for="' + $(this).prop('id') + '"]').remove();
+			}
+
+			refreshProgress();
 		};
 	});
 
@@ -82,3 +91,12 @@ $(document).ready(function(){
 	}
 
 });
+
+function refreshProgress(){
+	var step = 100 / $('.form-group').length;
+	var now = ( $('.form-group.has-success').length ) * step;
+	var perc_now = now + '%';
+
+	$('[role="progressbar"]').css('width',perc_now);
+	$('[role="progressbar"]').html(perc_now);
+}
