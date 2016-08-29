@@ -1,0 +1,43 @@
+doctype html
+html
+	head
+		title Account Creation - Meet-Up Event Planner
+		
+		script(src="../node_modules/jquery/dist/jquery.min.js")
+		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
+		script(src="js/app.js")
+		
+		link(rel="stylesheet",href="../node_modules/bootstrap/dist/css/bootstrap.min.css")
+		link(rel="stylesheet",href="css/app.min.css")
+		
+		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+	body
+		.jumbotron.text-center.m-b-0
+			h2 Meet-Up Event Planner
+			h4 Event Creation
+		nav.navbar.navbar-default.m-t-0
+			.container
+				ul.nav.navbar-nav.m-t-0
+					li.active
+						a(href="account.html") Account Creation
+					li
+						a(href="event.html") Event Creation
+		.row.content
+			.form-center
+				form(name="createAccount", method="POST")
+					.form-group
+						label(for="inputName") Name
+						input#inputName.form-control(type="text",name="name",placeholder="Your Full Name",required)
+					.form-group
+						label(for="inputEmail") Email
+						input#inputEmail.form-control(type="email",name="email",placeholder="youremail@domain.com",autocomplete="email",required)
+					.form-group
+						label(for="inputPhone") Phone number
+						input#inputPhone.form-control(type="tel",name="phone",placeholder="123-456-7890",autocomplete="phone",required)
+					.form-group
+						label(for="inputBirthday") Birthday
+						input#inputBirthday.form-control(type="date",name="birthday",autocomplete="birthday",required)
+					.form-group
+						label(for="inputLocation") Password
+						input#inputLocation.form-control(type="password",name="password",minlength="7",required)
+					input.form-control.btn-primary(type="submit",value="Create")

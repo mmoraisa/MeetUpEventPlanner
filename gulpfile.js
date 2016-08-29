@@ -29,7 +29,7 @@ gulp.task('less',['clean-temp'], function () {
 
 gulp.task('concat-minify-css',['clean-dist','less'], function() {
   return gulp.src('./temp/css/**/*.css')
-    .pipe(concat('vianuvem.min.css'))
+    .pipe(concat('app.min.css'))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('./dist/css'));
 });
