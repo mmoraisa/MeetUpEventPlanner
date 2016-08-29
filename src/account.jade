@@ -27,17 +27,17 @@ html
 				form(name="createAccount", method="POST")
 					.form-group
 						label(for="inputName") Name
-						input#inputName.form-control(type="text",name="name",placeholder="Your Full Name",required)
+						input#inputName.form-control(autofocus,type="text",name="name",placeholder="Your Full Name",required)
 					.form-group
 						label(for="inputEmail") Email
 						input#inputEmail.form-control(type="email",name="email",placeholder="youremail@domain.com",autocomplete="email",required)
+					.form-group
+						label(for="inputLocation") Password
+						input#inputLocation.form-control(type="password",name="password",minlength="7",required)
 					.form-group
 						label(for="inputPhone") Phone number
 						input#inputPhone.form-control(type="tel",name="phone",placeholder="123-456-7890",autocomplete="phone",required)
 					.form-group
 						label(for="inputBirthday") Birthday
 						input#inputBirthday.form-control(type="date",name="birthday",autocomplete="birthday",required)
-					.form-group
-						label(for="inputLocation") Password
-						input#inputLocation.form-control(type="password",name="password",minlength="7",required)
 					input.form-control.btn-primary(type="submit",value="Create")

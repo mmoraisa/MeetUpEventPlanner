@@ -27,7 +27,7 @@ html
 				form(name="createEvent", method="POST")
 					.form-group
 						label(for="inputName") Name
-						input#inputName.form-control(type="text",name="name",placeholder="The Event Name",required)
+						input#inputName.form-control(autofocus,type="text",name="name",placeholder="The Event Name",required)
 					.form-group
 						label(for="inputEventType") Event Type
 						input#inputEventType.form-control(list="eventType",name="eventType",placeholder="Birthday Party, Conference...")
