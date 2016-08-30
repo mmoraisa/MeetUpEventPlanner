@@ -15,6 +15,9 @@ $(document).ready(function(){
 	});
 
 	$('input[type="password"]').each(function(){
+		this.onkeyup = function(){
+			refreshInput(this);
+		};
 		for(var i = 0; i < password_control.rules.length; i++){
 			$(this).parent().append('<p class="rule" rule="' + password_control.rules[i].id + '"><span class="notify glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;' + password_control.rules[i].message + '</p>');
 		}
@@ -55,7 +58,6 @@ $(document).ready(function(){
 
 var password_control = {
 	validatePassword: function(password_input){
-		debugger;
 		var valid = true;
 		
 		for(var i = 0; i < password_control.rules.length; i++){
@@ -109,8 +111,9 @@ var password_control = {
 
 function refreshInput(input){
 	if ($(input).prop('type') == 'password'){
+			$(input).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
 		if (password_control.validatePassword(input)){
-			// if password input is correct
+			$(input).parent().addClass('has-feedback').removeClass('has-error').addClass('has-success');
 		}
 	}
 	else if (input.checkValidity() == false){
