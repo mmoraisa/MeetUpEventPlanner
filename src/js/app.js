@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 	$('input[type="password"]').each(function(){
 		for(var i = 0; i < password_control.rules.length; i++){
-			$(this).parent().append('<p class="rule" rule="' + password_control.rules[i].id + '"><span class="notify glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">' + password_control.rules[i].message + '</span></p>');
+			$(this).parent().append('<p class="rule" rule="' + password_control.rules[i].id + '"><span class="notify glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;' + password_control.rules[i].message + '</p>');
 		}
 	});
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 		var event =   '<div class="col-xs-12 col-md-3" style="margin-bottom:20px;">'
 					+ '	<div class="col-xs-12" style="background-color:#ddd;height:230px;">'
-					+ '		<h4 style="margin-top:20px;">' + decodeURI(saved_events[i].name) + '</h3>'
+					+ '		<h4 style="margin-top:20px;">' + decodeURI(saved_events[i].name) + '</h4>'
 					+ '		<hr>'
 					+ '		<p style="text-align:left"><strong>Event Type:</strong> ' + decodeURI(saved_events[i].eventType) + '</p>'
 					+ '		<p style="text-align:left"><strong>Host:</strong> ' + decodeURI(saved_events[i].host) + '</p>'
@@ -55,9 +55,11 @@ $(document).ready(function(){
 
 var password_control = {
 	validatePassword: function(password_input){
+		debugger;
 		var valid = true;
 		
 		for(var i = 0; i < password_control.rules.length; i++){
+			debugger;
 			if (!password_control.rules[i].validate(password_input))
 				valid = false;	
 		}
@@ -69,8 +71,9 @@ var password_control = {
 					id: 1,
 					message: 'The password have a uppercase letter',
 					validate: function(password_input){
+						var password = $(password_input).val();
 						var isValid = password.match(/[A-Z]/g);
-						colorRules(password_input,1,isValid);
+						password_control.controlRules(password_input,1,isValid);
 						return isValid;
 					}
 				},
@@ -78,8 +81,9 @@ var password_control = {
 					id: 2,
 					message: 'The password have a special character',
 					validate: function(password_input){
-						var isValid = password.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g);
-						colorRules(password_input,2,isValid);
+						var password = $(password_input).val();
+						var isValid = !(/^[a-zA-Z0-9- ]*$/.test(password));
+						password_control.controlRules(password_input,2,isValid);
 						return isValid;
 					}
 				},
@@ -87,24 +91,26 @@ var password_control = {
 					id: 3,
 					message: 'The password have 8 or more characters',
 					validate: function(password_input){
+						debugger;
+						var password = $(password_input).val();
 						var isValid = password.length >= 8;
-						colorRules(password_input,1,isValid);
+						password_control.controlRules(password_input,3,isValid);
 						return isValid;
 					}
 				}
 	],
-	colorRules: function(password_input,rule,valid){
-		if (valid)
-			$(password_input).parent().find('p[rule=' + rule + ']').find('span').removeClass('glyphicon-remove').addClass('glyphicon-ok').css('color','green');
+	controlRules: function(password_input,rule,valid){
+		if(valid)
+			$(password_input).parent().find('p[rule=' + rule + ']').hide();
 		else
-			$(password_input).parent().find('p[rule=' + rule + ']').find('span').removeClass('glyphicon-ok').addClass('glyphicon-remove').css('color','red');
+			$(password_input).parent().find('p[rule=' + rule + ']').show();
 	}
 }
 
 function refreshInput(input){
 	if ($(input).prop('type') == 'password'){
 		if (password_control.validatePassword(input)){
-			alert('ok');
+			// if password input is correct
 		}
 	}
 	else if (input.checkValidity() == false){
