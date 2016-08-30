@@ -14,6 +14,12 @@ $(document).ready(function(){
 		};
 	});
 
+	$('input[type="password"]').each(function(){
+		for(var i = 0; i < password_control.rules.length; i++){
+			$(this).parent().append('<p class="rule" rule="' + password_control.rules[i].id + '"><span class="notify glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">' + password_control.rules[i].message + '</span></p>');
+		}
+	});
+
 	$('form[name="createEvent"]').unbind('submit').on('submit',function(){
 		var data = $(this).serialize().split("&");
 		var obj = {};
@@ -47,8 +53,61 @@ $(document).ready(function(){
 
 });
 
+var password_control = {
+	validatePassword: function(password_input){
+		var valid = true;
+		
+		for(var i = 0; i < password_control.rules.length; i++){
+			if (!password_control.rules[i].validate(password_input))
+				valid = false;	
+		}
+
+		return valid;
+	},
+	rules: [
+				{
+					id: 1,
+					message: 'The password have a uppercase letter',
+					validate: function(password_input){
+						var isValid = password.match(/[A-Z]/g);
+						colorRules(password_input,1,isValid);
+						return isValid;
+					}
+				},
+				{
+					id: 2,
+					message: 'The password have a special character',
+					validate: function(password_input){
+						var isValid = password.match(/[^A-z0-9\!\@\#\$\%\^\&\*]/g);
+						colorRules(password_input,2,isValid);
+						return isValid;
+					}
+				},
+				{
+					id: 3,
+					message: 'The password have 8 or more characters',
+					validate: function(password_input){
+						var isValid = password.length >= 8;
+						colorRules(password_input,1,isValid);
+						return isValid;
+					}
+				}
+	],
+	colorRules: function(password_input,rule,valid){
+		if (valid)
+			$(password_input).parent().find('p[rule=' + rule + ']').find('span').removeClass('glyphicon-remove').addClass('glyphicon-ok').css('color','green');
+		else
+			$(password_input).parent().find('p[rule=' + rule + ']').find('span').removeClass('glyphicon-ok').addClass('glyphicon-remove').css('color','red');
+	}
+}
+
 function refreshInput(input){
-	if (input.checkValidity() == false){
+	if ($(input).prop('type') == 'password'){
+		if (password_control.validatePassword(input)){
+			alert('ok');
+		}
+	}
+	else if (input.checkValidity() == false){
 		if($('.input_error[for="' + $(input).prop('id') + '"]').length == 0){
 			$(input).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
 			$(input).parent().find('.notify').remove();
@@ -56,12 +115,12 @@ function refreshInput(input){
 			$(input).parent().after('<div class="input_error" for="' + $(input).prop('id') + '">' + $(input)[0].validationMessage + '</div>');
 		}
 	}
-	else{
+	else {
 		if($(input).val().length > 0){
 			$(input).parent().addClass('has-feedback').removeClass('has-error').addClass('has-success');
 			$(input).parent().find('.notify').remove();
 			$(input).parent().append('<span class="notify glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
-		}$('.input_error[for="' + $(input).prop('id') + '"]').remove();
+		} $('.input_error[for="' + $(input).prop('id') + '"]').remove();
 	}
 
 	refreshProgress();
