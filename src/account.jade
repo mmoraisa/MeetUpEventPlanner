@@ -2,14 +2,14 @@ doctype html
 html
 	head
 		title Account Creation - Meet-Up Event Planner
-		
+
 		script(src="../node_modules/jquery/dist/jquery.min.js")
 		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
 		script(src="js/app.js")
-		
+
 		link(rel="stylesheet",href="../node_modules/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet",href="css/app.min.css")
-		
+
 		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
 	body
 		.jumbotron.text-center.m-b-0
@@ -36,10 +36,10 @@ html
 					.form-group
 						label(for="inputLocation") Password
 						input#inputLocation.form-control(type="password",name="password",minlength="7",required)
-					.form-group
+					.form-group.has-feedback.has-success
 						label(for="inputPhone") Phone number
 						input#inputPhone.form-control(type="tel",name="phone",placeholder="123-456-7890",autocomplete="phone")
-					.form-group
+					.form-group.has-feedback.has-success
 						label(for="inputBirthday") Birthday
 						input#inputBirthday.form-control(type="date",name="birthday",autocomplete="birthday")
 					.progress

@@ -2,14 +2,14 @@ doctype html
 html
 	head
 		title Event Creation - Meet-Up Event Planner
-		
+
 		script(src="../node_modules/jquery/dist/jquery.min.js")
 		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
 		script(src="js/app.js")
-		
+
 		link(rel="stylesheet",href="../node_modules/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet",href="css/app.min.css")
-		
+
 		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
 	body
 		.jumbotron.text-center.m-b-0
@@ -32,7 +32,7 @@ html
 						input#inputName.form-control(autofocus,type="text",name="name",placeholder="The Event Name",required)
 					.form-group
 						label(for="inputEventType") Event Type
-						input#inputEventType.form-control(list="eventType",name="eventType",placeholder="Birthday Party, Conference...")
+						input#inputEventType.form-control(list="eventType",name="eventType",placeholder="Birthday Party, Conference...",required)
 						datalist#eventType
 							option(value="Birthday Party")
 							option(value="Conference")

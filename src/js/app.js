@@ -23,6 +23,11 @@ $(document).ready(function(){
 		}
 	});
 
+	$('form[name="createAccount"]').find('input[type="submit"]').unbind().on('click',function(){
+		if($(this).parents('form').find('.form-group.has-error').length == 0)
+			$(this).parents('form').submit();
+	});
+
 	$('form[name="createEvent"]').unbind('submit').on('submit',function(){
 		var data = $(this).serialize().split("&");
 		var obj = {};
@@ -54,16 +59,18 @@ $(document).ready(function(){
 
 	}
 
+	refreshProgress();
+
 });
 
 var password_control = {
 	validatePassword: function(password_input){
 		var valid = true;
-		
+
 		for(var i = 0; i < password_control.rules.length; i++){
 			debugger;
 			if (!password_control.rules[i].validate(password_input))
-				valid = false;	
+				valid = false;
 		}
 
 		return valid;
@@ -145,7 +152,7 @@ function getSavedEvents(){
 								eventType: 'Birthday',
 								host: 'Jonas Apartment',
 								guestlist: 'Adrian, Maila, Carla..',
-								start: '2016-08-18T20:00',	
+								start: '2016-08-18T20:00',
 								end: '2016-08-18T23:00',
 								additionalinfo: ''
 							},
@@ -154,7 +161,7 @@ function getSavedEvents(){
 								eventType: 'Conference',
 								host: 'Hilton Hotel',
 								guestlist: 'Mr. Carlos, Mr Pepper, Domenico..',
-								start: '2016-08-18T23:00',	
+								start: '2016-08-18T23:00',
 								end: '2016-08-19T01:00',
 								additionalinfo: 'Bring your invite for access'
 							},
@@ -163,7 +170,7 @@ function getSavedEvents(){
 								eventType: 'Wedding',
 								host: 'Angels Church',
 								guestlist: 'Julien, Alberto, Peter..',
-								start: '2016-08-18T16:00',	
+								start: '2016-08-18T16:00',
 								end: '2016-08-18T20:00',
 								additionalinfo: ''
 							}
