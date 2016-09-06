@@ -68,7 +68,6 @@ var password_control = {
 		var valid = true;
 
 		for(var i = 0; i < password_control.rules.length; i++){
-			debugger;
 			if (!password_control.rules[i].validate(password_input))
 				valid = false;
 		}
@@ -100,7 +99,6 @@ var password_control = {
 					id: 3,
 					message: 'The password have 8 or more characters',
 					validate: function(password_input){
-						debugger;
 						var password = $(password_input).val();
 						var isValid = password.length >= 8;
 						password_control.controlRules(password_input,3,isValid);
