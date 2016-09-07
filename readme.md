@@ -23,11 +23,15 @@ Install the dependencies.
 $ npm install
 ```
 
-To fill location automatic you need to put a valid API_KEY from Google API in the src/js/app.js file.
-
 Run gulp streaming build system...
 
 ```sh
 $ gulp
 ```
+
+You can synchronize your browser with the application running
+```sh
+$ gulp serve
+```
+
 It will create the /dist folder that contains the web application files. You can run some webapp servers and open the event.html or account.html files.
