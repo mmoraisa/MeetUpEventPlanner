@@ -210,7 +210,7 @@ function getSavedEvents(){
 }
 
 function refreshProgress(){
-	var step = 100 / $('.form-group').length;
+	var step = 100 / $('input:not([type="submit"])').length;
 	var now = ( $('.form-group.has-success').length ) * step;
 	var perc_now = now + '%';
 
