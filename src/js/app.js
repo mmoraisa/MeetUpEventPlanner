@@ -115,6 +115,37 @@ var password_control = {
 }
 
 function refreshInput(input){
+
+	if($(input).prop('name') == "start"){
+		if($(input).val() != ''){
+			var dt_input = new Date($(input).val());
+			var dt_atual = new Date();
+
+			if (dt_atual > dt_input){
+				input.setCustomValidity("Start date must be higher than now");
+			} else {
+				input.setCustomValidity("");
+			}
+		}
+	}
+
+	if($(input).prop('name') == "end"){
+		if($(input).val() != ''){
+			if ($('input[name="start"]').val() != ''){
+				var dt_end = new Date($(input).val());
+				var dt_start = new Date($('input[name="start"]').val());
+
+				if (dt_start > dt_end){
+					input.setCustomValidity("End date must be higher than start date");
+				} else {
+					input.setCustomValidity("");
+				}
+			} else{
+				input.setCustomValidity("Fill start date before the end date");
+			}
+		}
+	}
+
 	if ($(input).prop('type') == 'password'){
 			$(input).parent().addClass('has-feedback').removeClass('has-success').addClass('has-error');
 		if (password_control.validatePassword(input)){
@@ -136,6 +167,7 @@ function refreshInput(input){
 			$(input).parent().append('<span class="notify glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
 		} $('.input_error[for="' + $(input).prop('id') + '"]').remove();
 	}
+
 
 	refreshProgress();
 }
