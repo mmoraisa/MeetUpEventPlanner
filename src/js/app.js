@@ -1,4 +1,4 @@
-var api_key = 'YOUR_API_KEY';
+var api_key = 'AIzaSyCRIjczrUkwiSOddTAWzP958pVJm8yybCU';
 
 $(document).ready(function(){
 
@@ -216,6 +216,9 @@ function refreshProgress(){
 
 	$('[role="progressbar"]').css('width',perc_now);
 	$('[role="progressbar"]').html(perc_now);
+
+	if (now == 100)
+		$('input[type="submit"]').removeAttr('disabled');
 }
 
 function findLocation(pos){
@@ -225,6 +228,9 @@ function findLocation(pos){
 		url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + crd.latitude + ',' + crd.longitude + '&key=' + api_key,
 		crossDomain: true,
 		dataType: 'json',
+		headers: {
+	        'Access-Control-Allow-Origin': '*'
+	    },
 		success: function(data){
 			var location = data.results[0].name;
 			$('input[name="location"]').val(location);

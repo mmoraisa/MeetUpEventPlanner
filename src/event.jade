@@ -3,14 +3,10 @@ html
 	head
 		title Event Creation - Meet-Up Event Planner
 
-		script(src="../node_modules/jquery/dist/jquery.min.js")
-		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
-		script(src="js/app.js")
-
 		link(rel="stylesheet",href="../node_modules/bootstrap/dist/css/bootstrap.min.css")
 		link(rel="stylesheet",href="css/app.min.css")
 
-		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+		meta(name="viewport",content="width=device-width, initial-scale=1")
 	body
 		.jumbotron.text-center.m-b-0
 			h2 Meet-Up Event Planner
@@ -57,4 +53,7 @@ html
 						textarea#inputAdditionalInfo.form-control(type="text",name="additionalinfo",placeholder="An optional message to the guests ...")
 					.progress
 						.progress-bar(role="progressbar",aria-valuenow="0",aria-valuemin="0",aria-valuemax="100",style="width:0%") 0%
-					input.form-control.btn-primary(type="submit",value="Create")
+					input.form-control.btn-primary(type="submit",value="Create",disabled)
+		script(src="../node_modules/jquery/dist/jquery.min.js")
+		script(src="../node_modules/bootstrap/dist/js/bootstrap.min.js")
+		script(src="js/app.js")
