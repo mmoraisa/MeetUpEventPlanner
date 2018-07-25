@@ -1,11 +1,6 @@
 # Meet-Up Event Planner
 
-There is a repository to store my Meet-Up Event Planner Web Application for my nanodegree studies. This application is very simple, but I used some technologies on this.
-
-  - Jade (node template engine)
-  - Gulp (streaming build system)
-  - LESS (dynamic style sheet language)
-  - Bootstrap (UI boilerplate)
+There is a repository to store my Meet-Up Event Planner Web Application for my nanodegree studies. Meet-Up Event Planner is a web app with high conversion web forms for my nanodegree. It has input validations and an awesome function to autofill Location input with Google Places API
   
 ![Meetup Event Planner](https://s3.amazonaws.com/in3d-site/portfolio/prj_meetup.png "Meetup Event Planner Project")
 
