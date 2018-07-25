@@ -6,6 +6,8 @@ There is a repository to store my Meet-Up Event Planner Web Application for my n
   - Gulp (streaming build system)
   - LESS (dynamic style sheet language)
   - Bootstrap (UI boilerplate)
+  
+![Meetup Event Planner](https://s3.amazonaws.com/in3d-site/portfolio/prj_meetup.png "Meetup Event Planner Project")
 
 ### How to run
 
